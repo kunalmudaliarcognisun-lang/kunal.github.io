@@ -221,10 +221,11 @@ body::before {
 
 .hero-span-gradient {
   display: block;
-  background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.2));
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.35));
 }
 
 .hero-subtitle {
@@ -784,5 +785,11 @@ body::before {
   border-color: var(--prism-1);
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.3; transform: scale(0.9); }
 }
 
