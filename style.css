@@ -624,37 +624,156 @@ body::before {
 }
 
 /* ═══════════════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE & MOBILE OPTIMIZATION
    ═══════════════════════════════════════════════════ */
+
+/* Disable Custom Cursor on Touch Devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor, .cursor-follower {
+    display: none !important;
+  }
+  body {
+    cursor: auto !important;
+  }
+}
+
 @media (max-width: 1024px) {
   .project-item { grid-template-columns: 1fr; gap: 40px; }
   .bento-grid { grid-template-columns: repeat(2, 1fr); }
   .bento-1, .bento-2, .bento-5 { grid-column: span 2; }
   .stats-row { gap: 32px; }
+  .expertise-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 
+      "systems api"
+      "operational data"
+      "infrastructure infrastructure";
+  }
 }
 
 @media (max-width: 768px) {
-  .navbar { min-width: 90%; top: 12px; }
+  .section { padding: 80px 0; }
+  
+  .navbar { 
+    width: 94%; 
+    min-width: unset;
+    top: 12px;
+    height: 56px;
+    padding: 0 6px;
+  }
+  
   .nav-logo { display: none; }
-  .hero h1 { font-size: 3rem; }
+  .nav-menu { 
+    width: 100%;
+    justify-content: space-around;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-menu::-webkit-scrollbar { display: none; }
+  
+  .nav-link { 
+    padding: 8px 10px; 
+    font-size: 0.76rem; 
+    white-space: nowrap;
+  }
+
+  .hero {
+    min-height: 100vh;
+    height: auto;
+    padding: 120px 16px 60px;
+  }
+
+  .hero h1 { 
+    font-size: clamp(2rem, 7vw, 3.2rem); 
+  }
+  
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    gap: 12px;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    padding: 16px 24px !important;
+    font-size: 0.95rem !important;
+  }
+
   .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
   .bento-1, .bento-2, .bento-3, .bento-4, .bento-5 { grid-column: span 1; }
   
   .stats-row { 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-top: 48px;
+    gap: 20px;
+    margin-top: 40px;
+    width: 100%;
   }
+
+  .stat-number { font-size: 2.2rem; }
+  .stat-text { font-size: 0.75rem; }
 
   .skills-grid {
     grid-template-columns: 1fr;
   }
+
+  .expertise-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "systems"
+      "operational"
+      "api"
+      "data"
+      "infrastructure";
+    grid-auto-rows: auto;
+  }
+
+  .education-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .bento-card {
+    padding: 26px 20px;
+  }
+
+  .project-visual {
+    height: auto;
+    min-height: 280px;
+  }
+
+  .contact-box {
+    padding: 48px 20px;
+    border-radius: 28px;
+  }
 }
 
 @media (max-width: 480px) {
+  .container { width: 94%; }
+  .hero-tag { font-size: 0.7rem; padding: 6px 14px; }
+  .hero-name { font-size: 0.8rem; letter-spacing: 0.2rem; }
+  .hero h1 { font-size: 1.85rem; }
+  
   .stats-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .contact-pills {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .contact-pill {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -680,34 +799,6 @@ body::before {
 .area-api { grid-area: api; }
 .area-data { grid-area: data; }
 .area-infra { grid-area: infrastructure; }
-
-@media (max-width: 1024px) {
-  .expertise-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 
-      "systems api"
-      "operational data"
-      "infrastructure infrastructure";
-  }
-}
-
-@media (max-width: 768px) {
-  .expertise-grid {
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-      "systems"
-      "operational"
-      "api"
-      "data"
-      "infrastructure";
-    grid-auto-rows: auto;
-  }
-
-  .education-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-  }
-}
 
 /* ═══════════════════════════════════════════════════
    CONTACT (ENTERPRISE BOX)
@@ -738,7 +829,7 @@ body::before {
 
 .contact-box-title {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 800;
   color: #fff;
   margin-bottom: 24px;
@@ -746,7 +837,7 @@ body::before {
 }
 
 .contact-box-subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text-dim);
   max-width: 700px;
   margin: 0 auto 48px;
